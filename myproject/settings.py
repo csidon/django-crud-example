@@ -151,12 +151,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if 'S3_BUCKET' in os.environ:
-    AWS_STORAGE_BUCKET_NAME = 'crud-bucket987'
-    AWS_S3_REGION_NAME = 'us-west-2'
-
-    AWS_S3_CUSTOM_DOMAIN = '%s.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
-    # Where to store the static files (bucket folder name)
-    STATICFILES_LOCATION = 'static'
-    STATICFILES_STORAGE = 
