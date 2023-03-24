@@ -27,7 +27,16 @@ SECRET_KEY = 'iw+b1%p9&zw_+#gx+m&aw$gza2-_p6$03s3&4p+4kbd8%o0b_8'
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['.us-west-2.elasticbeanstalk.com', '127.0.0.1']
+if 'PYTHONPATH' in os.environ:
+    # Debug = False
+    Debug = True
+    ALLOWED_HOSTS = ['.us-west-2.elasticbeanstalk.com', '127.0.0.1']
+else:
+    # !!!! SECURITY WARNING!! Don't run with debug turned on in production!
+    # We need this to work in development environment but not on testing or production environments
+    # We do not want to reveal errors in our server-side to the public in case if that happens
+    Debug = True
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -141,3 +150,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if 'S3_BUCKET' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'crud-bucket987'
+    AWS_S3_REGION_NAME = 'us-west-2'
+
+    AWS_S3_CUSTOM_DOMAIN = '%s.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+    # Where to store the static files (bucket folder name)
+    STATICFILES_LOCATION = 'static'
+    STATICFILES_STORAGE = 
