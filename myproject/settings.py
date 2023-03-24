@@ -166,7 +166,7 @@ if 'S3_BUCKET' in os.environ:
     print("IS IT HERE??")
     print(AWS_STORAGE_BUCKET_NAME)
 
-    AWS_S3_REGION_NAME = 'ap-southeast-2'
+    AWS_S3_REGION_NAME = 'us-west-2'
 
     #AWS_DEFAULT_ACL = 'public-read'
     AWS_DEFAULT_ACL = None
